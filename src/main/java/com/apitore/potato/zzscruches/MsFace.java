@@ -1,7 +1,6 @@
 package com.apitore.potato.zzscruches;
 
-import static org.bytedeco.javacpp.opencv_imgcodecs.IMREAD_COLOR;
-import static org.bytedeco.javacpp.opencv_imgcodecs.imread;
+import static org.bytedeco.javacpp.opencv_imgcodecs.*;
 
 import java.io.IOException;
 import java.nio.charset.Charset;
@@ -11,8 +10,8 @@ import java.nio.file.Paths;
 import java.util.List;
 import java.util.Map;
 
-import org.bytedeco.javacpp.indexer.UByteRawIndexer;
 import org.bytedeco.javacpp.opencv_core.Mat;
+import org.bytedeco.javacpp.indexer.UByteRawIndexer;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
@@ -82,21 +81,21 @@ public class MsFace {
       return true;
     Map mp = (Map) res.get(0);
 
-    Map amp = (Map) mp.get("faceAttributes");
+    /*Map amp = (Map) mp.get("faceAttributes"); //FIXME comment out for demo.
     Map emp = (Map) amp.get("emotion");
     if ((double) emp.get("anger") < 0.2 &&
         (double) emp.get("disgust") < 0.2 &&
         (double) emp.get("sadness") < 0.2)
-      return true;
+      return true;*/
 
-    //if ((double) emp.get("anger") > (double) emp.get("disgust") &&
-    //    (double) emp.get("anger") > (double) emp.get("sadness"))
-    //  facevector = ANGER.clone();
-    //else if ((double) emp.get("disgust") > (double) emp.get("anger") &&
-    //    (double) emp.get("disgust") > (double) emp.get("sadness"))
-    //  facevector = DISGUST.clone();
-    //else
-    //  facevector = SADNESS.clone();
+    /*if ((double) emp.get("anger") > (double) emp.get("disgust") && //FIXME bad working.
+        (double) emp.get("anger") > (double) emp.get("sadness"))
+      facevector = ANGER.clone();
+    else if ((double) emp.get("disgust") > (double) emp.get("anger") &&
+        (double) emp.get("disgust") > (double) emp.get("sadness"))
+      facevector = DISGUST.clone();
+    else
+      facevector = SADNESS.clone();*/
 
     Map fmp = (Map) mp.get("faceRectangle");
     face[0] = (int) fmp.get("left");
